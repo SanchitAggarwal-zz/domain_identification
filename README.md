@@ -69,4 +69,4 @@ For this, we use Bag of Words representation for each message and use a Naive Ba
 |**nearby**     |0.88     |0.91    |0.90      |893      |
 |**support**    |0.90     |0.27    |0.42      |136      |
 |**recharge**   |0.79     |0.99    |0.88      |1347     |
-|**avg / total**|0.88     |0.87    |0.86      |4181     |
+|**avg / total**|**0.88**     |**0.87**    |**0.86**     |**4181**     |
