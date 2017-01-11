@@ -74,17 +74,15 @@ For this, we use Bag of Words representation for each message and use a Naive Ba
 For this, we use TFIDF representation for each message and use a Naive Bayes Classifier.
 
 *Results*:
-```
-precision    recall  f1-score   support
 
-shopping       0.97      0.80      0.87       422
-food       0.97      0.61      0.75       340
-support       0.87      0.84      0.86       330
-reminders       0.99      0.71      0.83       170
-movies       0.97      0.93      0.95       552
-recharge       0.88      0.92      0.90       890
-travel       0.95      0.27      0.43       142
-nearby       0.79      0.99      0.88      1335
-
-avg / total       0.88      0.87      0.86      4181
-```
+|               |precision|  recall|  f1-score|  support|
+| ------------- |:-------:| ------:| --------:|--------:|
+|**shopping**   |0.97     | 0.80     | 0.87   |    422|
+|**food**       |0.97     | 0.61     | 0.75   |    340|
+|**travel**     |0.95     | 0.27     | 0.43   |    142|
+|**reminders**  |0.99     | 0.71     | 0.83   |    170|
+|**movies**     |0.97     | 0.93     | 0.95   |    552|
+|**nearby**     |0.79     | 0.99     | 0.88   |   1335|
+|**support**    |0.87     | 0.84     | 0.86   |    330|
+|**recharge**   |0.88     | 0.92     | 0.90   |    890|
+|**avg / total**|**0.88**     | **0.87**     | **0.86**   |   **4181**|
