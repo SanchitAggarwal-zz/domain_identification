@@ -151,10 +151,14 @@ if __name__ == '__main__':
         print validation_set.shape
 
         # define the pipeline
-        pipeline = Pipeline([('vect', CountVectorizer(analyzer = "word", tokenizer = None, preprocessor = None, stop_words = None)),
-                            ('tfidf', TfidfTransformer()),
-                            ('clf', SGDClassifier(loss='hinge', penalty='l2', alpha=1e-3, n_iter=5, random_state=42))])
-                            # ('clf', MultinomialNB())])
+        pipeline = Pipeline([
+        # ('vect', CountVectorizer(analyzer = "word", tokenizer = None, preprocessor = None, stop_words = None)),
+        ('vect', CountVectorizer(ngram_range=(1, 2),token_pattern=r'\b\w+\b', analyzer = "word", tokenizer = None, preprocessor = None, stop_words = None,  min_df=1)),
+        ('tfidf', TfidfTransformer()),
+        ('clf', SGDClassifier(loss='hinge', penalty='l2', alpha=1e-3, n_iter=5, random_state=42))])
+        # ('clf', MultinomialNB())])
+        # ('classifier',         BernoulliNB(binarize=0.0)) ])
+
 
         # get training model
         model = trainModel(training_set, pipeline)

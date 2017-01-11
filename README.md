@@ -162,3 +162,5 @@ For this, we use TFIDF representation for each message and use a SVM Classifier 
 
 
 #### **Conclusion** ###
+TFIDF with SVM give good results for this dataset
+Find the result file [here]().
