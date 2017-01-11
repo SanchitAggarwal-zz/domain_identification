@@ -53,7 +53,7 @@ Performed different experiments for feature selection and classifier selection. 
     print validation_set.shape
 ```
 
- 1. **Experiment 1** *Bag of Words - Naive Bayes - 30% Validation*
+#### **Experiment 1** *Bag of Words - Naive Bayes - 30% Validation* ####
 For this, we use Bag of Words representation for each message and use a Naive Bayes Classifier.
 
 *Results*:
@@ -70,7 +70,7 @@ For this, we use Bag of Words representation for each message and use a Naive Ba
 |**recharge**   |0.91      |0.93      |0.92       |902|
 |**avg / total**|**0.91**      |**0.90**      |**0.90**      |**4181**|
 
-1. **Experiment 2** *TFIDF - Naive Bayes - 30% Validation*
+#### **Experiment 2** *TFIDF - Naive Bayes - 30% Validation* ####
 For this, we use TFIDF representation for each message and use a Naive Bayes Classifier.
 
 *Results*:
@@ -86,3 +86,19 @@ For this, we use TFIDF representation for each message and use a Naive Bayes Cla
 |**support**    |0.87     | 0.84     | 0.86   |    330|
 |**recharge**   |0.88     | 0.92     | 0.90   |    890|
 |**avg / total**|**0.88**     | **0.87**     | **0.86**   |   **4181**|
+
+#### **Experiment 3** *TFIDF - SVM - 30% Validation* ####
+For this, we use TFIDF representation for each message and use a SVM Classifier.
+*Results*:
+
+|               |precision|  recall|  f1-score|  support|
+| ------------- |:-------:| ------:| --------:|--------:|
+|**shopping**   |0.93     |0.83    | 0.88      | 433|
+|**food**       |0.93     |0.78    | 0.85      | 341|
+|**travel**     |0.89     |0.85    | 0.87      | 328|
+|**reminders**  |0.94     |0.84    | 0.89      | 135|
+|**movies**     |0.96     |0.94    | 0.95      | 543|
+|**nearby**     |0.87     |0.96    | 0.92      |1342|
+|**support**    |0.81     |0.66    | 0.73      | 139|
+|**recharge**   |0.88     |0.91    | 0.89      | 920|
+|**avg / total**|**0.90**     |**0.90**    | **0.90**      **4181**|

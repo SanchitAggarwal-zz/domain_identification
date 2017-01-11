@@ -153,7 +153,8 @@ if __name__ == '__main__':
         # define the pipeline
         pipeline = Pipeline([('vect', CountVectorizer(analyzer = "word", tokenizer = None, preprocessor = None, stop_words = None)),
                             ('tfidf', TfidfTransformer()),
-                            ('clf', MultinomialNB())])
+                            ('clf', SGDClassifier(loss='hinge', penalty='l2', alpha=1e-3, n_iter=5, random_state=42))])
+                            # ('clf', MultinomialNB())])
 
         # get training model
         model = trainModel(training_set, pipeline)
