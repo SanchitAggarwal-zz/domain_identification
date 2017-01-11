@@ -46,6 +46,7 @@ def parseArguments():
     ap.add_argument("-t", "--training_datafile",required=False, help="path to training data file.")
     ap.add_argument("-m", "--modelpath",required=False, help="path to learned model file for testing.")
     ap.add_argument("-i", "--test_datafile",required=False, help="path to test data file.")
+    ap.add_argument("-r", "--resultfile",required=False, help="result file name.")
 
     # parsing the arguments
     args = vars(ap.parse_args())
@@ -151,8 +152,8 @@ if __name__ == '__main__':
 
         # define the pipeline
         pipeline = Pipeline([('vect', CountVectorizer(analyzer = "word", tokenizer = None, preprocessor = None, stop_words = None)),
-                                   ('tfidf', TfidfTransformer()),
-                                   ('clf', MultinomialNB())])
+                            ('tfidf', TfidfTransformer()),
+                            ('clf', MultinomialNB())])
 
         # get training model
         model = trainModel(training_set, pipeline)
@@ -165,7 +166,10 @@ if __name__ == '__main__':
 
         # save model
         print "----Saving Model----"
-        saveModel(model)
+        if args["modelpath"] is not None:
+            saveModel(model, args["modelpath"])
+        else:
+            saveModel(model)
 
     if args["modelpath"] is not None and args["test_datafile"] is not None:
         print "----Testing----"
@@ -183,7 +187,11 @@ if __name__ == '__main__':
         # Save results to output object
         print "----Saving Results----"
         output = pd.DataFrame( data={"message":original_test_df['message'], "predicted":predicted} )
-        output.to_csv( "result.tsv", index=False, sep='\t', quoting=3 )
+        if args["resultfile"] is not None:
+            resultfile = args["resultfile"]
+        else:
+            resultfile = "result.tsv"
+        output.to_csv(resultfile, index=False, sep='\t', quoting=3 )
 
 # pipeline = Pipeline([('vect', CountVectorizer(analyzer = "word", tokenizer = None, preprocessor = None, stop_words = None)),
 #                            ('tfidf', TfidfTransformer()),
