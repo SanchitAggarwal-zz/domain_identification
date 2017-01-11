@@ -42,6 +42,26 @@ For simultaneously training and testing and saving results, run:
 python di_main.py -t data/train.tsv -m model.pkl -i data/test.txt -r resutls.tsv
 ```
 
+
+### Pre-processing ###
+Performed pre-processing of messages using NLTK. Function `messageToWords` takes a message as input, it then  removes html markup, stop words, any punctuation and lemmatize the tokens in the message.
+
+``` python
+# Function to convert a raw message to a string of words
+# The input is a single string (a raw message), and
+# the output is a single string (a preprocessed message)
+def messageToWords( message ):
+    message_text = BeautifulSoup(message,"html.parser").get_text() # remove html
+    clean_message = re.sub("[^a-zA-Z]", " ", message_text) # remove non-letters
+    words = clean_message.lower().split() # convert to words
+    words = [w for w in words if not w in stopwords]
+    words = [w for w in words if not w in punctuation]
+    words = [lemmatizer.lemmatize(w) for w in words]
+    words = [w for w in words if minlength < len(w) < maxlength]
+    return( " ".join( words ))
+```
+
+
 ### Experiments ###
 Performed different experiments for feature selection and classifier selection. For all the experiments we divided the training data into training set and validation set with a validation set size of 0.3
 
