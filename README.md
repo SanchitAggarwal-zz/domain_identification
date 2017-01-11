@@ -44,19 +44,36 @@ python di_main.py -t data/train.tsv -m model.pkl -i data/test.txt -r resutls.tsv
 
 
 ### Pre-processing ###
-Performed pre-processing of messages using NLTK. Function `messageToWords` takes a message as input, it then  removes html markup, stop words, any punctuation and lemmatize the tokens in the message.
+Performed pre-processing of messages using NLTK. Function `messageToWords` takes a message as input, it then  removes html markup, stop words, any punctuation and do pos tagging, it then lemmatize the tokens in the message.
 
 ``` python
+"""
 # Function to convert a raw message to a string of words
 # The input is a single string (a raw message), and
 # the output is a single string (a preprocessed message)
+"""
 def messageToWords( message ):
     message_text = BeautifulSoup(message,"html.parser").get_text() # remove html
     clean_message = re.sub("[^a-zA-Z]", " ", message_text) # remove non-letters
-    words = clean_message.lower().split() # convert to words
-    words = [w for w in words if not w in stopwords]
-    words = [w for w in words if not w in punctuation]
-    words = [lemmatizer.lemmatize(w) for w in words]
+    words = []
+    for word, tag in pos_tag(wordpunct_tokenize(clean_message)):
+        word = word.lower() # convert to lower case
+        word = word.strip()
+        word = word.strip('_')
+        word = word.strip('*')
+        # remove stopword
+        if word in stopwords:
+            continue
+        # ignore punctuation
+        if all(char in punctuation for char in word):
+            continue
+        tag = getWornetPOS(tag)
+        if tag == '':
+            continue
+        else:
+            word = lemmatizer.lemmatize(word,tag)
+        words.append(word)
+
     words = [w for w in words if minlength < len(w) < maxlength]
     return( " ".join( words ))
 ```
@@ -172,6 +189,23 @@ Find the result file [here](https://github.com/SanchitAggarwal/domain_identifica
 |**recharge**|       0.88  |    0.96   |   0.92   |   1388|
 |**avg / total**|       **0.91**|      **0.90** |     **0.90** |     **4181**|
 
+
+#### **Experiment 6:** *TFIDF - SVM (POS Tagging)- 30% Validation* ####
+For this, we use TFIDF representation for each message and use a SVM Classifier along with Bi-grams and POS tagging.
+
+Find the result file [here](https://github.com/SanchitAggarwal/domain_identification/blob/master/result_tfidf_svm_pos.tsv).
+
+|               |precision|  recall|  f1-score|  support|
+| ------------- |:-------:| ------:| --------:|--------:|
+|**shopping**|       0.95|      0.81  |    0.87|       452|
+|**food**|       0.91    |  0.87     | 0.89    |   327|
+|**travel**|       0.90   |   0.81    |  0.85   |    299|
+|**reminders**|       0.93 |     0.84  |    0.89 |      152|
+|**movies**|       0.94     | 0.95    |  0.95     |  537|
+|**nearby**|       0.88     |0.91     | 0.89      | 892|
+|**support**|       0.79     | 0.60     | 0.68     |  136|
+|**recharge**|       0.87     | 0.95     | 0.91     | 1386|
+|**avg / total**|       **0.89**   |   **0.89**|      **0.89**|      **4181**|
 
 #### **Conclusion** ###
 TFIDF with SVM give good results for this dataset.

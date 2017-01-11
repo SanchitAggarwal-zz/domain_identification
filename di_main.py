@@ -13,7 +13,10 @@ import numpy as np
 from sklearn.model_selection import train_test_split
 from bs4 import BeautifulSoup
 from nltk.corpus import stopwords as sw
+from nltk.corpus import wordnet as wn
 from nltk import WordNetLemmatizer
+from nltk import wordpunct_tokenize
+from nltk import pos_tag
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.feature_extraction.text import TfidfTransformer
 from sklearn.naive_bayes import MultinomialNB
@@ -61,6 +64,21 @@ def parseArguments():
     return args
 
 """
+# Function to map tree bank corpus tags with wordnet tags
+"""
+def getWornetPOS(tag):
+    tagMap = {
+            'N': wn.NOUN,
+            'V': wn.VERB,
+            'R': wn.ADV,
+            'J': wn.ADJ
+        }
+    if tag[0] in tagMap.keys():
+        return tagMap[tag[0]]
+    else:
+        return ''
+
+"""
 # Function to convert a raw message to a string of words
 # The input is a single string (a raw message), and
 # the output is a single string (a preprocessed message)
@@ -68,13 +86,27 @@ def parseArguments():
 def messageToWords( message ):
     message_text = BeautifulSoup(message,"html.parser").get_text() # remove html
     clean_message = re.sub("[^a-zA-Z]", " ", message_text) # remove non-letters
-    words = clean_message.lower().split() # convert to words
-    words = [w for w in words if not w in stopwords]
-    words = [w for w in words if not w in punctuation]
-    words = [lemmatizer.lemmatize(w) for w in words]
+    words = []
+    for word, tag in pos_tag(wordpunct_tokenize(clean_message)):
+        word = word.lower() # convert to lower case
+        word = word.strip()
+        word = word.strip('_')
+        word = word.strip('*')
+        # remove stopword
+        if word in stopwords:
+            continue
+        # ignore punctuation
+        if all(char in punctuation for char in word):
+            continue
+        tag = getWornetPOS(tag)
+        if tag == '':
+            continue
+        else:
+            word = lemmatizer.lemmatize(word,tag)
+        words.append(word)
+
     words = [w for w in words if minlength < len(w) < maxlength]
     return( " ".join( words ))
-
 
 """
 # Function to get dataframe from data file
@@ -153,7 +185,7 @@ if __name__ == '__main__':
         # define the pipeline
         pipeline = Pipeline([
         # ('vect', CountVectorizer(analyzer = "word", tokenizer = None, preprocessor = None, stop_words = None)),
-        ('vect', CountVectorizer(ngram_range=(1, 2),token_pattern=r'\b\w+\b', analyzer = "word", tokenizer = None, preprocessor = None, stop_words = None,  min_df=1)),
+        ('vect', CountVectorizer(ngram_range=(1, 4),token_pattern=r'\b\w+\b', analyzer = "word", tokenizer = None, preprocessor = None, stop_words = None,  min_df=1)),
         ('tfidf', TfidfTransformer()),
         ('clf', SGDClassifier(loss='hinge', penalty='l2', alpha=1e-3, n_iter=5, random_state=42))])
         # ('clf', MultinomialNB())])
