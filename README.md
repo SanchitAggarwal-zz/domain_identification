@@ -118,10 +118,7 @@ For this, we use TFIDF representation for each message and use a Random Forest C
 |**movies**     |   0.97  |    0.95|      0.96|       523|
 |**nearby**     |   0.87  |    0.96|      0.91|      1379|
 |**support**    |   0.78  |    0.70|      0.74|       123|
-|**recharge**   |   **0.89**  |    **0.91**|      **0.90**|       **913**|
-
-
-
-avg / total       0.90      0.90      0.90      4181
+|**recharge**   |   0.89  |    0.91|      0.90|       913|
+|**avg / total**| **0.90**|**0.90**|  **0.90**|  **4181**|
 
 #### **Conclusion** ###
