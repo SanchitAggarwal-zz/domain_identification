@@ -76,6 +76,8 @@ Performed different experiments for feature selection and classifier selection. 
 #### **Experiment 1:** *Bag of Words - Naive Bayes - 30% Validation* ####
 For this, we use Bag of Words representation for each message and use a Naive Bayes Classifier.
 
+Find the result file [here](https://github.com/SanchitAggarwal/domain_identification/blob/master/result_bow_nb.tsv).
+
 *Results*:
 
 |               |precision|  recall|  f1-score|  support|
@@ -93,6 +95,8 @@ For this, we use Bag of Words representation for each message and use a Naive Ba
 #### **Experiment 2:** *TFIDF - Naive Bayes - 30% Validation* ####
 For this, we use TFIDF representation for each message and use a Naive Bayes Classifier.
 
+Find the result file [here](https://github.com/SanchitAggarwal/domain_identification/blob/master/result_tfidf_nb.tsv).
+
 *Results*:
 
 |               |precision|  recall|  f1-score|  support|
@@ -109,6 +113,9 @@ For this, we use TFIDF representation for each message and use a Naive Bayes Cla
 
 #### **Experiment 3:** *TFIDF - SVM - 30% Validation* ####
 For this, we use TFIDF representation for each message and use a SVM Classifier.
+
+Find the result file [here](https://github.com/SanchitAggarwal/domain_identification/blob/master/result_tfidf_svm.tsv).
+
 *Results*:
 
 |               |precision|  recall|  f1-score|  support|
@@ -126,6 +133,9 @@ For this, we use TFIDF representation for each message and use a SVM Classifier.
 
 #### **Experiment 4:** *TFIDF - RF- 30% Validation* ####
 For this, we use TFIDF representation for each message and use a Random Forest Classifier.
+
+Find the result file [here](https://github.com/SanchitAggarwal/domain_identification/blob/master/result_tfidf_rf.tsv).
+
 
 *Results*:
 
@@ -145,6 +155,8 @@ For this, we use TFIDF representation for each message and use a Random Forest C
 #### **Experiment 5:** *TFIDF - SVM (Bigram Features)- 30% Validation* ####
 For this, we use TFIDF representation for each message and use a SVM Classifier along with Bi-grams
 
+Find the result file [here](https://github.com/SanchitAggarwal/domain_identification/blob/master/result_tfidf_svm_bigram.tsv).
+
 
 *Results*:
 
@@ -163,5 +175,3 @@ For this, we use TFIDF representation for each message and use a SVM Classifier 
 
 #### **Conclusion** ###
 TFIDF with SVM give good results for this dataset.
-
-Find the result file [here](https://github.com/SanchitAggarwal/domain_identification/blob/master/result_tfidf_svm_bigram.tsv).
