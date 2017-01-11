@@ -141,4 +141,24 @@ For this, we use TFIDF representation for each message and use a Random Forest C
 |**recharge**   |   0.89  |    0.91|      0.90|       913|
 |**avg / total**| **0.90**|**0.90**|  **0.90**|  **4181**|
 
+
+#### **Experiment 5:** *TFIDF - SVM (Bigram Features)- 30% Validation* ####
+For this, we use TFIDF representation for each message and use a SVM Classifier along with Bi-grams
+
+
+*Results*:
+
+|               |precision|  recall|  f1-score|  support|
+| ------------- |:-------:| ------:| --------:|--------:|
+|**shopping**|       0.96|      0.80 |     0.87|       387|
+|**       food**|       0.92|      0.85|      0.88|       319|
+|**     travel**|       0.89|      0.86 |     0.87 |      312|
+|**  reminders**|       0.96|      0.89 |     0.93 |      159|
+|**     movies**|       0.96|      0.94 |     0.95 |      587|
+|**     nearby**|       0.88|      0.93 |     0.91 |      885|
+|**    support**|       0.84|      0.60 |     0.70 |      144|
+|** recharge**|       0.88  |    0.96   |   0.92   |   1388|
+|**avg / total**|       **0.91**|      **0.90** |     **0.90** |     **4181**|
+
+
 #### **Conclusion** ###
