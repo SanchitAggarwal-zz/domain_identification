@@ -101,4 +101,27 @@ For this, we use TFIDF representation for each message and use a SVM Classifier.
 |**nearby**     |0.87     |0.96    | 0.92      |1342|
 |**support**    |0.81     |0.66    | 0.73      | 139|
 |**recharge**   |0.88     |0.91    | 0.89      | 920|
-|**avg / total**|**0.90**     |**0.90**    | **0.90**      **4181**|
+|**avg / total**|**0.90** |**0.90**| **0.90**  |**4181**|
+
+
+#### **Experiment 3** *TFIDF - RF- 30% Validation* ####
+For this, we use TFIDF representation for each message and use a Random Forest Classifier.
+
+*Results*:
+
+|               |precision|  recall|  f1-score|  support|
+| ------------- |:-------:| ------:| --------:|--------:|
+|**shopping**   |   0.97  |    0.85|      0.90|       400|
+|**food**       |   0.93  |    0.75|      0.83|       336|
+|**travel**     |   0.90  |    0.84|      0.87|       340|
+|**reminders**  |   0.95  |    0.87|      0.91|       167|
+|**movies**     |   0.97  |    0.95|      0.96|       523|
+|**nearby**     |   0.87  |    0.96|      0.91|      1379|
+|**support**    |   0.78  |    0.70|      0.74|       123|
+|**recharge**   |   **0.89**  |    **0.91**|      **0.90**|       **913**|
+
+
+
+avg / total       0.90      0.90      0.90      4181
+
+#### **Conclusion** ###
