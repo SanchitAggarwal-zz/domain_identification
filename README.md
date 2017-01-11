@@ -73,7 +73,7 @@ Performed different experiments for feature selection and classifier selection. 
     print validation_set.shape
 ```
 
-#### **Experiment 1** *Bag of Words - Naive Bayes - 30% Validation* ####
+#### **Experiment 1:** *Bag of Words - Naive Bayes - 30% Validation* ####
 For this, we use Bag of Words representation for each message and use a Naive Bayes Classifier.
 
 *Results*:
@@ -90,7 +90,7 @@ For this, we use Bag of Words representation for each message and use a Naive Ba
 |**recharge**   |0.91      |0.93      |0.92       |902|
 |**avg / total**|**0.91**      |**0.90**      |**0.90**      |**4181**|
 
-#### **Experiment 2** *TFIDF - Naive Bayes - 30% Validation* ####
+#### **Experiment 2:** *TFIDF - Naive Bayes - 30% Validation* ####
 For this, we use TFIDF representation for each message and use a Naive Bayes Classifier.
 
 *Results*:
@@ -107,7 +107,7 @@ For this, we use TFIDF representation for each message and use a Naive Bayes Cla
 |**recharge**   |0.88     | 0.92     | 0.90   |    890|
 |**avg / total**|**0.88**     | **0.87**     | **0.86**   |   **4181**|
 
-#### **Experiment 3** *TFIDF - SVM - 30% Validation* ####
+#### **Experiment 3:** *TFIDF - SVM - 30% Validation* ####
 For this, we use TFIDF representation for each message and use a SVM Classifier.
 *Results*:
 
@@ -124,7 +124,7 @@ For this, we use TFIDF representation for each message and use a SVM Classifier.
 |**avg / total**|**0.90** |**0.90**| **0.90**  |**4181**|
 
 
-#### **Experiment 3** *TFIDF - RF- 30% Validation* ####
+#### **Experiment 4:** *TFIDF - RF- 30% Validation* ####
 For this, we use TFIDF representation for each message and use a Random Forest Classifier.
 
 *Results*:
