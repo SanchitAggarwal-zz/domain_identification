@@ -163,4 +163,4 @@ For this, we use TFIDF representation for each message and use a SVM Classifier 
 
 #### **Conclusion** ###
 TFIDF with SVM give good results for this dataset
-Find the result file [here]().
+Find the result file [here](https://github.com/SanchitAggarwal/domain_identification/blob/master/result_tfidf_svm_bigram.tsv).
