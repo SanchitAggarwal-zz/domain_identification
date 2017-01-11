@@ -25,16 +25,21 @@ git clone https://github.com/SanchitAggarwal/domain_identification.git
 cd domian_identification
 ```
 
-For training the model run:
+For training the model, run:
 ``` sh
 python  di_main.py -t data/train.tsv
 ```
 
 This will save a `model.pkl` file at the root folder.
 
-For testing the model run:
+For testing the model, run:
 ``` sh
 python  di_main.py -m model.pkl -i data/test.txt
+```
+
+For simultaneously training and testing, run:
+``` sh
+python  python di_main.py -t data/train.tsv -m model.pkl -i data/test.txt
 ```
 
 
