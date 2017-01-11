@@ -23,6 +23,7 @@ from sklearn.pipeline import Pipeline
 from sklearn.naive_bayes import BernoulliNB
 from sklearn.feature_selection import SelectKBest, chi2
 from sklearn.model_selection import GridSearchCV
+from sklearn.metrics import classification_report
 
 # doc string
 __author__ = "Sanchit Aggarwal"
@@ -157,9 +158,10 @@ if __name__ == '__main__':
         model = trainModel(training_set, pipeline)
 
         # predict for validation set
-        print "----Validation----"
+        print "----Validation and Classification Report----"
         predicted = predictModel(validation_set,model)
-        print np.mean(predicted == validation_set["domain"])
+        target_domains =  list(set(validation_set["domain"]))
+        print(classification_report(validation_set["domain"], predicted, target_names=target_domains))
 
         # save model
         print "----Saving Model----"
@@ -182,7 +184,6 @@ if __name__ == '__main__':
         print "----Saving Results----"
         output = pd.DataFrame( data={"message":original_test_df['message'], "predicted":predicted} )
         output.to_csv( "result.tsv", index=False, sep='\t', quoting=3 )
-
 
 # pipeline = Pipeline([('vect', CountVectorizer(analyzer = "word", tokenizer = None, preprocessor = None, stop_words = None)),
 #                            ('tfidf', TfidfTransformer()),
